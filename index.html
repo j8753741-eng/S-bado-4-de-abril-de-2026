@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sábado, 4 de abril de 2026 — Noche</title>
+
+  <!-- Tipografías elegantes y limpias (NO raras) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg1:#07050c;
+      --bg2:#120a1d;
+      --card:#0f0b16;
+      --card2:#0b0911;
+      --text:#f3eefc;
+      --muted:#cbbbe6;
+      --soft:#a995cc;
+      --line:rgba(255,255,255,.10);
+      --violet:#a855f7;
+      --violet2:#7c3aed;
+      --pink:#ec4899;
+      --gold:#f5d0fe;
+      --shadow: 0 25px 80px rgba(0,0,0,.65);
+    }
+
+    *{box-sizing:border-box;}
+    body{
+      margin:0;
+      min-height:100vh;
+      font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(900px 650px at 15% 20%, rgba(168,85,247,.22), transparent 55%),
+        radial-gradient(800px 600px at 85% 25%, rgba(236,72,153,.18), transparent 55%),
+        radial-gradient(1000px 700px at 50% 100%, rgba(124,58,237,.20), transparent 60%),
+        linear-gradient(180deg, var(--bg1), var(--bg2));
+      padding: 55px 18px;
+      overflow-x:hidden;
+    }
+
+    /* Partículas suaves */
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      background-image:
+        radial-gradient(rgba(255,255,255,.08) 1px, transparent 1px);
+      background-size: 28px 28px;
+      opacity:.18;
+      pointer-events:none;
+      mask-image: radial-gradient(circle at 50% 30%, black 35%, transparent 75%);
+    }
+
+    .wrapper{
+      max-width: 920px;
+      margin: 0 auto;
+      position:relative;
+    }
+
+    .header{
+      text-align:center;
+      margin-bottom: 22px;
+    }
+
+    .badge{
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow: 0 0 25px rgba(168,85,247,.15);
+      backdrop-filter: blur(10px);
+      font-size: 13px;
+      letter-spacing: .3px;
+      color: var(--muted);
+    }
+
+    .badge .dot{
+      width:9px;
+      height:9px;
+      border-radius:50%;
+      background: linear-gradient(90deg, var(--pink), var(--violet));
+      box-shadow: 0 0 18px rgba(168,85,247,.7);
+    }
+
+    .title{
+      margin: 16px 0 0;
+      font-family: "Playfair Display", serif;
+      font-weight: 700;
+      font-size: clamp(28px, 3.5vw, 46px);
+      letter-spacing: .4px;
+      color: #ffffff;
+      text-shadow: 0 0 35px rgba(168,85,247,.25);
+    }
+
+    .subtitle{
+      margin: 10px auto 0;
+      max-width: 720px;
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.65;
+      opacity:.95;
+    }
+
+    .letter{
+      margin-top: 30px;
+      border-radius: 26px;
+      background:
+        radial-gradient(900px 500px at 20% 0%, rgba(168,85,247,.15), transparent 55%),
+        radial-gradient(700px 500px at 80% 20%, rgba(236,72,153,.12), transparent 55%),
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+
+    /* Marco interior elegante */
+    .letter::before{
+      content:"";
+      position:absolute;
+      inset:14px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,.10);
+      pointer-events:none;
+      box-shadow: inset 0 0 0 1px rgba(168,85,247,.08);
+    }
+
+    /* Brillo superior */
+    .letter::after{
+      content:"";
+      position:absolute;
+      top:-80px;
+      left:-120px;
+      width: 520px;
+      height: 240px;
+      transform: rotate(10deg);
+      background: radial-gradient(circle, rgba(168,85,247,.20), transparent 70%);
+      filter: blur(10px);
+      pointer-events:none;
+      opacity:.8;
+    }
+
+    .topbar{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding: 22px 26px 16px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      background: rgba(0,0,0,.20);
+      backdrop-filter: blur(12px);
+    }
+
+    .date{
+      font-size: 13px;
+      color: var(--muted);
+      letter-spacing: .4px;
+      text-transform: uppercase;
+      opacity:.95;
+    }
+
+    .seal{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      color: var(--muted);
+      font-size: 13px;
+      opacity:.95;
+    }
+
+    .seal .heart{
+      width: 14px;
+      height: 14px;
+      display:inline-block;
+      transform: translateY(1px);
+      background: linear-gradient(90deg, var(--pink), var(--violet));
+      clip-path: polygon(50% 85%, 15% 55%, 5% 35%, 10% 20%, 25% 10%, 40% 15%, 50% 30%, 60% 15%, 75% 10%, 90% 20%, 95% 35%, 85% 55%);
+      box-shadow: 0 0 18px rgba(236,72,153,.45);
+    }
+
+    .content{
+      padding: 34px 42px 30px;
+      position:relative;
+    }
+
+    .content p{
+      margin: 0 0 16px;
+      font-size: 16px;
+      line-height: 1.95;
+      color: rgba(243,238,252,.95);
+    }
+
+    .content p strong{
+      color:#ffffff;
+      font-weight:700;
+      text-shadow: 0 0 22px rgba(168,85,247,.18);
+    }
+
+    .saludo{
+      font-family: "Playfair Display", serif;
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 18px;
+      color: #ffffff;
+    }
+
+    .divider{
+      margin: 22px 0 26px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(168,85,247,.55), rgba(236,72,153,.40), transparent);
+      border-radius: 999px;
+      opacity:.9;
+    }
+
+    .quoteBox{
+      margin: 28px 0 28px;
+      padding: 20px 22px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.22);
+      box-shadow: inset 0 0 0 1px rgba(168,85,247,.08);
+    }
+
+    .quoteBox p{
+      margin:0;
+      font-style: italic;
+      color: rgba(203,187,230,.95);
+      font-size: 15.5px;
+      line-height: 1.9;
+    }
+
+    .firma{
+      margin-top: 26px;
+      padding-top: 22px;
+      border-top: 1px solid rgba(255,255,255,.08);
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+
+    .firma .despedida{
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .firma .nombre{
+      font-family: "Playfair Display", serif;
+      font-size: 22px;
+      font-weight: 700;
+      color:#ffffff;
+      letter-spacing:.4px;
+      text-shadow: 0 0 25px rgba(168,85,247,.25);
+    }
+
+    .firma .extra{
+      font-size: 13px;
+      color: rgba(203,187,230,.9);
+      letter-spacing: .3px;
+    }
+
+    /* Pie romántico elegante */
+    .footerGlow{
+      margin-top: 26px;
+      padding: 26px 22px 28px;
+      border-radius: 18px;
+      background:
+        radial-gradient(600px 220px at 50% 50%, rgba(168,85,247,.22), transparent 70%),
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow: 0 0 40px rgba(168,85,247,.12);
+      text-align:center;
+    }
+
+    .neonPhrase{
+      font-family: "Playfair Display", serif;
+      font-size: clamp(18px, 2.2vw, 26px);
+      font-weight: 700;
+      color: #d9b7ff;
+      letter-spacing: .6px;
+      line-height: 1.6;
+      text-shadow:
+        0 0 8px rgba(168,85,247,.75),
+        0 0 18px rgba(168,85,247,.60),
+        0 0 35px rgba(168,85,247,.40);
+    }
+
+    .neonName{
+      display:block;
+      margin-top: 10px;
+      font-family: "Inter", sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #e9d5ff;
+      text-shadow:
+        0 0 8px rgba(168,85,247,.8),
+        0 0 16px rgba(168,85,247,.6),
+        0 0 30px rgba(168,85,247,.4);
+    }
+
+    /* Detalles decorativos */
+    .ornaments{
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      opacity:.9;
+    }
+
+    .ornaments span{
+      position:absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(168,85,247,.25);
+      box-shadow: 0 0 22px rgba(168,85,247,.45);
+      filter: blur(.2px);
+    }
+
+    .ornaments span:nth-child(1){top: 25px; left: 40px; width: 8px; height: 8px; opacity:.65;}
+    .ornaments span:nth-child(2){top: 90px; right: 60px; width: 11px; height: 11px; opacity:.55; background: rgba(236,72,153,.20); box-shadow: 0 0 22px rgba(236,72,153,.35);}
+    .ornaments span:nth-child(3){bottom: 90px; left: 60px; width: 10px; height: 10px; opacity:.55;}
+    .ornaments span:nth-child(4){bottom: 40px; right: 80px; width: 7px; height: 7px; opacity:.55;}
+    .ornaments span:nth-child(5){top: 190px; left: 120px; width: 6px; height: 6px; opacity:.55;}
+    .ornaments span:nth-child(6){top: 220px; right: 160px; width: 6px; height: 6px; opacity:.55;}
+
+    /* Responsive */
+    @media (max-width: 700px){
+      body{padding: 35px 12px;}
+      .content{padding: 26px 18px 26px;}
+      .topbar{padding: 18px 18px 14px;}
+      .title{font-size: 30px;}
+      .subtitle{font-size: 14px;}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrapper">
+
+    <div class="header">
+      <div class="badge">
+        <span class="dot"></span>
+        <span>Carta de amor — Noche especial</span>
+      </div>
+
+      <h1 class="title">Para ti, mi amor</h1>
+      <p class="subtitle">
+        Una carta escrita con el corazón, con el deseo de abrazarte incluso desde la distancia…
+        y con la emoción de saber que falta solo un día para verte.
+      </p>
+    </div>
+
+    <div class="letter">
+      <div class="ornaments">
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+
+      <div class="topbar">
+        <div class="date">Sábado, 4 de abril de 2026 — Noche</div>
+        <div class="seal">
+          <span class="heart"></span>
+          <span>Hecha para Valeria</span>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="saludo">Mi amor,</div>
+
+        <p>
+          Esta noche no sé cómo explicarlo sin que se me acelere el corazón… pero me haces una falta que duele bonito,
+          que quema suave, que se mete en mi pecho y me recuerda que lo nuestro no es cualquier cosa.
+          Es que no es solo extrañarte… es sentirte tan presente en mi mente que pareciera que mi alma te llama a gritos
+          aunque yo esté en silencio.
+        </p>
+
+        <p>
+          Hoy es sábado por la noche… y mientras el mundo sigue normal allá afuera, yo estoy aquí, pensando en ti como si
+          fueras lo único que existe. Pensando en tu voz, en tus ojos, en tu forma de mirar… esa forma que me desarma,
+          que me deja sin defensa, que me vuelve tuyo con una facilidad que me asusta y me encanta al mismo tiempo.
+        </p>
+
+        <p>
+          Porque contigo no sé fingir calma, mi amor… contigo todo se me nota. Se me nota cuando te pienso, se me nota
+          cuando te extraño, se me nota cuando deseo verte… y esta noche se me nota demasiado.
+        </p>
+
+        <p><strong>Me haces falta… demasiado.</strong></p>
+
+        <div class="divider"></div>
+
+        <p>
+          Me hace falta sentirte cerca. Me hace falta escucharte hablar aunque sea de cualquier cosa, porque incluso lo más
+          simple en tu boca se vuelve especial. Me hace falta tu risa, tu presencia, tu manera de existir, tu forma de ser…
+          y hasta tus silencios me hacen falta, porque contigo incluso el silencio se siente como un hogar.
+        </p>
+
+        <p>
+          Esta noche me di cuenta de algo…<br>
+          <strong>yo no solo te extraño.</strong>
+        </p>
+
+        <p><strong>Yo te necesito.</strong></p>
+
+        <p>
+          Y no lo digo como una palabra bonita, lo digo como lo que es: una verdad que me atraviesa. Te necesito en mis días,
+          en mis noches, en mis pensamientos. Te necesito en mi vida como si mi corazón hubiera decidido hace rato que su lugar
+          favorito siempre va a ser contigo.
+        </p>
+
+        <div class="quoteBox">
+          <p>
+            Me haces falta cuando me acuesto.<br>
+            Me haces falta cuando despierto.<br>
+            Me haces falta cuando veo algo lindo y pienso “esto le gustaría a ella”.<br>
+            Me haces falta cuando escucho una canción y siento que tiene tu nombre escondido en cada nota.<br>
+            Me haces falta cuando el tiempo se vuelve lento… porque sin ti, el tiempo pesa.
+          </p>
+        </div>
+
+        <p>
+          Mi amor… hoy me dolió extrañarte, pero también me hizo sentir orgulloso de lo que somos. Porque si tu ausencia se siente
+          así de fuerte… es porque tu amor ha dejado marcas hermosas en mí. Marcas que no se borran. Marcas que me hacen sentir vivo.
+        </p>
+
+        <p>
+          Y lo más bonito de todo… es que falta solo un día.
+        </p>
+
+        <p><strong>Solo un día para verte.</strong></p>
+
+        <p>
+          Solo un día para tenerte cerca, para mirarte como siempre quiero mirarte, para recordarte en persona lo que te digo con palabras.
+          Solo un día para volver a sentir que el mundo se acomoda cuando tú estás frente a mí.
+        </p>
+
+        <p>
+          Y no te imaginas lo que me provoca pensar en ese momento…
+        </p>
+
+        <div class="quoteBox">
+          <p>
+            Pensar en verte llegar…<br>
+            en cómo se me va a ir el aire cuando te vea…<br>
+            en cómo mi corazón va a latir más rápido…<br>
+            en cómo voy a sonreír sin poder evitarlo…<br>
+            en cómo me voy a quedar mirándote como si fuera la primera vez.
+          </p>
+        </div>
+
+        <p>
+          Porque cada vez que te veo, mi amor, se siente como un comienzo nuevo. Se siente como si el universo me diera otra oportunidad
+          de enamorarme de ti… y yo siempre la aprovecho.
+        </p>
+
+        <p><strong>Siempre.</strong></p>
+
+        <p>
+          Quiero verte y abrazarte tan fuerte que se te olvide el cansancio, que se te olvide el mundo, que se te olvide todo…
+          menos que conmigo estás segura, que conmigo estás cuidada, que conmigo estás en un lugar donde siempre vas a ser amada.
+        </p>
+
+        <p>
+          Quiero besarte… pero besarte de esos besos que no son solo besos, sino promesas. Besarte con ganas, con deseo, con amor.
+          Besarte como si mi boca te hubiera estado esperando toda la semana. Besarte como si mi alma se hubiera quedado incompleta sin ti.
+        </p>
+
+        <p>
+          Porque cuando no estás, mi amor, algo en mí se siente incompleto.
+        </p>
+
+        <p>
+          Y es que tú no eres solo mi novia… tú eres una parte de mí.<br>
+          Eres la parte bonita.<br>
+          La parte que me inspira.<br>
+          La parte que me calma.<br>
+          La parte que me prende el corazón y me vuelve loco.
+        </p>
+
+        <p><strong>No sabes cuánto te deseo.</strong></p>
+
+        <p>
+          No solo con el cuerpo… te deseo con todo lo que soy. Te deseo con la mente, con el corazón, con el alma. Te deseo en mi vida,
+          en mi futuro, en mis planes. Te deseo en mi rutina, en mis días malos, en mis días buenos. Te deseo cuando estoy feliz,
+          y te deseo aún más cuando estoy triste, porque tú eres la única capaz de devolverme la paz solo con existir.
+        </p>
+
+        <p>
+          Y hoy, esta noche, te juro que te siento demasiado cerca… aunque estés lejos.
+        </p>
+
+        <div class="quoteBox">
+          <p>
+            Porque te pienso tanto que pareciera que te estoy abrazando con el pensamiento.<br>
+            Porque te imagino tanto que casi puedo tocarte.<br>
+            Porque te extraño tanto que mi cuerpo se queda inquieto… como si te estuviera buscando.
+          </p>
+        </div>
+
+        <p><strong>Mi amor… tú me provocas.</strong></p>
+
+        <p>
+          Me provocas ternura y me provocas locura.<br>
+          Me provocas ganas de cuidarte como lo más delicado del mundo… y también ganas de tenerte pegada a mí sin dejarte ir.
+        </p>
+
+        <p>
+          Me provocas ganas de besarte la frente, de acariciarte el cabello, de decirte cosas bonitas al oído…
+          y al mismo tiempo me provocas ganas de perderme en ti, de sentirte mía por completo, de que no exista nadie más alrededor.
+        </p>
+
+        <p>
+          Porque tú eres ese tipo de mujer que no se quiere solo un poquito.
+        </p>
+
+        <p><strong>Tú se quieres con todo.</strong></p>
+
+        <p>
+          Y yo… yo te quiero con todo, mi amor.
+        </p>
+
+        <p>
+          Te quiero de una manera intensa, profunda, real. Te quiero con un amor que no sabe ser frío, que no sabe ser simple,
+          que no sabe ser suave cuando se trata de ti. Porque tú eres mi debilidad más hermosa… y también mi fuerza.
+        </p>
+
+        <div class="divider"></div>
+
+        <p>
+          Y aunque no estemos juntos esta noche, yo quiero que sientas esto:
+        </p>
+
+        <p><strong>te estoy amando incluso desde la distancia.</strong></p>
+
+        <p>
+          Te estoy amando en cada pensamiento que se me escapa hacia ti.<br>
+          Te estoy amando en cada deseo que me nace cuando recuerdo tu cara.<br>
+          Te estoy amando en cada minuto que pasa y me acerca a mañana.
+        </p>
+
+        <p>
+          Porque mañana…
+        </p>
+
+        <p><strong>mañana por fin voy a verte.</strong></p>
+
+        <p>
+          Y yo sé que cuando te tenga frente a mí, no voy a querer soltar tu mano. No voy a querer separarme.
+          No voy a querer que se acabe el momento.
+        </p>
+
+        <p>
+          Quiero verte y decirte “te extrañé” mirándote a los ojos, para que entiendas que no es una frase cualquiera… es una confesión.
+          Quiero mirarte y sentir esa emoción que solo tú me das, esa emoción que me hace sentir nervioso, feliz, vivo, enamorado…
+          como si yo fuera un niño y tú fueras el regalo más lindo que me ha dado la vida.
+        </p>
+
+        <p><strong>Y lo eres.</strong></p>
+
+        <p>
+          Eres mi regalo.<br>
+          Eres mi suerte.<br>
+          Eres mi tentación más bonita.
+        </p>
+
+        <p>
+          Eres esa persona que llegó y cambió todo… sin pedir permiso, sin avisar, sin prepararme… y aun así, yo no cambiaría nada.
+          Porque desde que llegaste, mi vida se siente más verdadera.
+        </p>
+
+        <p><strong>Mi amor… si supieras lo mucho que te pienso en la noche…</strong></p>
+
+        <p>
+          Te imagino acostada, te imagino respirando suave, te imagino con esa carita linda que tienes cuando estás tranquila…
+          y me dan ganas de estar ahí, de acercarme despacio, de abrazarte por la espalda, de besarte el cuello con delicadeza,
+          de decirte al oído cuánto te amo… y quedarme así contigo, pegado a ti, sintiendo tu calor, sintiendo tu corazón.
+        </p>
+
+        <p><strong>Porque tú eres mi lugar favorito.</strong></p>
+
+        <p>
+          Y esta noche, aunque no estés aquí, yo quiero que sientas mi amor como si te estuviera abrazando.
+        </p>
+
+        <div class="quoteBox">
+          <p>
+            Quiero que sientas que eres deseada.<br>
+            Que eres amada.<br>
+            Que eres admirada.<br>
+            Que eres importante.<br>
+            Que eres mi mujer… y que yo te miro como se mira lo que se valora.
+          </p>
+        </div>
+
+        <p>
+          Y también quiero que sepas esto:
+        </p>
+
+        <p>
+          No importa cuántos días pasen, no importa cuánta distancia haya, no importa cuántas cosas estén pasando…
+          yo siempre voy a sentir lo mismo por ti, porque lo mío contigo no es un capricho, no es un momento, no es una emoción pasajera.
+        </p>
+
+        <p><strong>Lo mío contigo es serio.</strong></p>
+        <p><strong>Es real.</strong></p>
+        <p><strong>Es profundo.</strong></p>
+
+        <p>
+          Es un amor que me llena tanto… que hasta cuando me duele extrañarte, me siento feliz de tenerte.
+        </p>
+
+        <p>
+          Porque prefiero mil veces extrañarte… que no haberte conocido nunca.
+        </p>
+
+        <p>
+          Mi amor, esta noche solo quiero terminar diciéndote algo que sale directo desde lo más honesto de mí:
+        </p>
+
+        <p><strong>te amo con ganas.</strong></p>
+
+        <p>
+          Te amo con pasión.<br>
+          Te amo con deseo.<br>
+          Te amo con orgullo.<br>
+          Te amo con paciencia.<br>
+          Te amo con locura.<br>
+          Te amo con ternura.<br>
+          Te amo con esa intensidad que solo se siente cuando el corazón está completamente rendido.
+        </p>
+
+        <p>
+          Y sí…
+        </p>
+
+        <p><strong>estoy rendido por ti.</strong></p>
+
+        <p>
+          Y mañana, cuando por fin te vea, voy a demostrarte todo lo que estas palabras intentan explicar… porque yo sé que mi amor por ti
+          no cabe en una carta, no cabe en un mensaje, no cabe en una noche.
+        </p>
+
+        <div class="quoteBox">
+          <p>
+            Mi amor por ti se demuestra con la forma en la que te miro.<br>
+            Con la forma en la que te cuido.<br>
+            Con la forma en la que te abrazo.<br>
+            Con la forma en la que te beso.<br>
+            Con la forma en la que me vuelvo feliz cuando estás cerca.
+          </p>
+        </div>
+
+        <p><strong>Solo falta un día…</strong></p>
+
+        <p>
+          y yo ya siento el corazón temblando por verte.
+        </p>
+
+        <p>
+          Duerme, mi amor. Descansa bonita.<br>
+          Que yo aquí me quedo… pensándote, deseándote, esperándote… y amándote como siempre.
+        </p>
+
+        <p><strong>Buenas noches, mi vida.</strong></p>
+
+        <p>
+          Te amo más de lo que te imaginas.<br>
+          Y mañana… mañana voy a tenerte cerca, y eso me tiene completamente loco.
+        </p>
+
+        <div class="firma">
+          <div class="despedida">Con todo mi amor,</div>
+          <div class="nombre">Tu novio ❤️</div>
+          <div class="extra"><strong>JUAN KALETH MENDOZA PRIMERA 💜</strong></div>
+        </div>
+
+        <div class="footerGlow">
+          <div class="neonPhrase">
+            “Si el mundo se apagara esta noche, yo seguiría viéndolo todo iluminado…
+            porque mi vida se enciende cada vez que pienso en ti.”
+            <span class="neonName">VALERIA PETRO VILLAZÓN</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</body>
+  </html>
